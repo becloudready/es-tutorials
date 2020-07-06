@@ -1,9 +1,10 @@
 ## Create an index
 
+```
 curl --location --request PUT 'http://<yourhost>:9200/bookdb_index_new' \
 --header 'Content-Type: application/json' \
 --data-raw '  { "settings": { "number_of_shards": 1 }}'
-
+```
 ********************************************************************
 
 ## Index some documents
