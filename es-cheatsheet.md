@@ -82,3 +82,31 @@ curl -X PUT "localhost:9200/_cluster/settings?pretty" -H 'Content-Type: applicat
 }
 '
 ```
+
+## Take backup using Elasticdump utility
+```
+# Copy an index from production to staging with analyzer and mapping:
+elasticdump \
+  --input=http://production.es.com:9200/my_index \
+  --output=http://staging.es.com:9200/my_index \
+  --type=analyzer
+elasticdump \
+  --input=http://production.es.com:9200/my_index \
+  --output=http://staging.es.com:9200/my_index \
+  --type=mapping
+elasticdump \
+  --input=http://production.es.com:9200/my_index \
+  --output=http://staging.es.com:9200/my_index \
+  --type=data
+
+# Backup index data to a file:
+elasticdump \
+  --input=http://production.es.com:9200/my_index \
+  --output=/data/my_index_mapping.json \
+  --type=mapping
+elasticdump \
+  --input=http://production.es.com:9200/my_index \
+  --output=/data/my_index.json \
+  --type=data
+  ```
+  
