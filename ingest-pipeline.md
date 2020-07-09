@@ -2,7 +2,7 @@
 ### Create CSV parsing Ingest pipeline using CSV procesor
 
 ```
-curl --location --request PUT 'http://159.203.61.164:9200/_ingest/pipeline/mycsv-pipeline' \
+curl --location --request PUT 'http://<yourhost>:9200/_ingest/pipeline/mycsv-pipeline' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "description": "A pipeline parse movie CSV file",
@@ -86,7 +86,7 @@ curl --location --request PUT 'http://localhost:9200/_ingest/pipeline/modify-rev
 ## Load sample data 
 
 ```
-curl --location --request PUT 'http://159.203.61.164:9200/amazon-reviews/_doc/1?pipeline=amazon-reviews' \
+curl --location --request PUT 'http://<yourhost>:9200/amazon-reviews/_doc/1?pipeline=amazon-reviews' \
 --header 'Content-Type: application/json' \
 --data-raw '{"reviewerID": "A14VAT5EAX3D9S", "asin": "1384719342", "reviewerName": "Jake", "helpful": [13, 14], "reviewText": "The product does exactly as it should and is quite affordable.I did not realized it was double screened until it arrived, so it was even better than I had expected.As an added bonus, one of the screens carries a small hint of the smell of an old grape candy I used to buy, so for reminiscent'\''s sake, I cannot stop putting the pop filter next to my nose and smelling it after recording. :DIf you needed a pop filter, this will work just as well as the expensive ones, and it may even come with a pleasing aroma like mine did!Buy this product! :]", "overall": 5.0, "summary": "Jake", "unixReviewTime": 1363392000, "reviewTime": "03 16, 2013"}'
 
@@ -94,7 +94,7 @@ curl --location --request PUT 'http://159.203.61.164:9200/amazon-reviews/_doc/1?
 ## Check data
 
 ```
-curl --location --request GET 'http://159.203.61.164:9200/amazon-reviews/_doc/1' \
+curl --location --request GET 'http://<yourhost>:9200/amazon-reviews/_doc/1' \
 --header 'Content-Type: application/json' \
 --data-raw ''
 
