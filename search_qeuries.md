@@ -9,7 +9,7 @@ curl --location --request PUT 'http://<yourhost>:9200/bookdb_index_new' \
 
 ## Index some documents
 ```	
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_bulk' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_bulk' \
 --header 'Content-Type: application/json' \
 --data-raw '{ "index":{"_id" : "1"} }
 {"title": "Elasticsearch: The Definitive Guide", "authors": ["clinton gormley", "zachary tong"], "summary" : "A distibuted real-time search and analytics engine", "publish_date" : "2015-02-07", "num_reviews": 20, "publisher": "oreilly"  }
@@ -25,13 +25,13 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_bu
 ## Query to search guide word in any field
 
 ```
-curl --location --request GET 'http://<yourhost>:9200/bookdb_index_new/book/_search?q=guide' \
+curl --location --request GET 'http://134.122.30.26:9200/bookdb_index_new/book/_search?q=guide' \
 --data-raw ''
 ```
 ******************************************************************************************
 ## Query to find word 'in action' in title field
 
-curl --location --request GET 'http://<yourhost>:9200/bookdb_index_new/book/_search?q=title:in%20action' \
+curl --location --request GET 'http://134.122.30.26:9200/bookdb_index_new/book/_search?q=title:in%20action' \
 --data-raw ''
 
 *********************************************************************************************
@@ -39,7 +39,7 @@ curl --location --request GET 'http://<yourhost>:9200/bookdb_index_new/book/_sea
 ## Query to limit result set of above query(to get title with word 'in action') to size =1 (only one result)
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -64,7 +64,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 we boost scores from the summary field by a factor of 3 in order to increase the importance of the summary field, which will, in turn, increase the relevance of document _id 4.
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -82,7 +82,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Query to search for a book with the word “Elasticsearch” OR “Solr” in the title, AND is authored by “clinton gormley” but NOT authored by “radu gheorge”:
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "query": {
@@ -109,7 +109,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ##Note: Instead of specifying "AUTO" you can specify the numbers 0, 1, or 2 to indicate the maximum number of edits that can be made to the string to find a match. The benefit of using "AUTO" is that it takes into account the length of the string. For strings that are only 3 characters long, allowing a fuzziness of 2 will result in poor search performance. Therefore it's recommended to stick to "AUTO" in most cases. 
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -128,7 +128,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Query to find all records that have an author whose name begins with the letter ‘t’:
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -150,7 +150,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Query to find books whose author names end with letter "y" --- use od regex
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -173,7 +173,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## query to find the book which have word 'search engine' in their title or summary (with max 3 word in between them)
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -192,7 +192,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## query to et the book which have both 'scalable' and 'solr' words in their summary or title
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -213,7 +213,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Match phrase prefix queries provide search-as-you-type or a poor man’s version of autocomplete 
 ##max_expansions parameter to limit the number of terms matched in order to reduce resource intensity.
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '
 {
@@ -233,7 +233,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ***********************************************************************************************************************
 ## Query to fuzzy search for the terms “search algorithm” in which one of the book authors is “grant ingersoll” or “tom morton.” 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -256,7 +256,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## query to search search all books in our index published by Manning Publications.
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -273,7 +273,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## use of terms keyword
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -290,7 +290,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## query to order books publoshed by manning in their descending order of publishing date
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -311,7 +311,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Query to search for books published in 2015.
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -333,7 +333,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## Note - We could have just run a regular multi_match query and sorted by the num_reviews field but then we lose the benefits of having relevance scoring.
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
@@ -359,7 +359,7 @@ curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_se
 ## query to search books on “search engines” ideally published around June 2014.
 
 ```
-curl --location --request POST 'http://<yourhost>:9200/bookdb_index_new/book/_search' \
+curl --location --request POST 'http://134.122.30.26:9200/bookdb_index_new/book/_search' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "query": {
